@@ -1,5 +1,6 @@
 <div align="center">  <h1>Install and Configure PostgreSQL</h1>  </div>
 
+
 1. **Install PostgreSQL**: If you haven't already installed PostgreSQL, you can do so using the following command:
 
    ```
@@ -30,8 +31,23 @@
    GRANT ALL PRIVILEGES ON DATABASE mydb TO myuser;
    ```
 
-   Replace `myuser` and `mypassword` with your desired username and password, and `mydb` with your desired database name.
+   Replace `myuser` and `mypassword` with your desired username and password, and `mydb` with your desired database name. <br>
+Locate the pg_hba.conf file. It's usually found in the PostgreSQL data directory, often in /etc/postgresql/{version}/main/pg_hba.conf. <br>
+Changing the `pg_hba.conf` line:
 
+```
+local   all             all                                     peer
+```
+
+to
+
+```
+local   all             all                                     all
+local   testing         <Data_base>                                 md5
+```
+```
+sudo service postgresql restart
+```
 5. ** Switch to the PostgreSQL User**
 
 You can switch to the PostgreSQL user and then use `psql`. The PostgreSQL user is typically named "postgres." Run the following command:
@@ -65,9 +81,6 @@ This SQL code defines a table named "list" with two columns, "id" and "name." Th
    ```
    
 This will return you to your regular command prompt.
-
-
-
 
 
 
@@ -173,4 +186,7 @@ This will return you to your regular command prompt.
 
    Your application should now be able to access the "list" table without encountering the "permission denied" error.
 
+**_Video Tutorial_**: https://www.youtube.com/watch?v=BTeSJ4VGU1o&t=350s&ab_channel=KKBUGHUNTER
+**GitHub**: https://github.com/KKBUGHUNTER/GO_Postgresql_CRUD_Web_App/tree/main
 ## Thank you...
+
