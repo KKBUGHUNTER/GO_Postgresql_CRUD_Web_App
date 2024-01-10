@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+    *{
+        margin: 0;
+    }
+    .main {
+        background-color: white; 
+        margin: 0;
+    }
+    
+    .taskbar {
+        background-color: black; /* White */
+        color: white; /* Black */
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        padding: 10px;
+    }
+    
+    .taskbar a{
+        padding-right: 50px;
+        color: white;
+        text-decoration: none;
+    }
+    
+    a:hover{
+        color: pink;
+        text-decoration: underline;
+    }
+    .root{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+    }
+    .heading-top{
+        padding-top: 35px;
+    }
+    .root h1{
+        color: lightcoral;
+    }
+    .heading-bottom{
+        padding-bottom: 35px;
+    }
+    .content{
+        margin: 15px;
+    }
+    </style>
+    <title>Go CRUD</title>
+</head>
+<body>
+    <div class="main">
+        <div class="taskbar">
+            <a href="index.html">Home</a>
+            <a href="insert.html">Insert</a>
+            <a href="read.html">Read</a>
+            <a href="update.html">Update</a>
+            <a href="delete.html">Delete</a>
+        </div>
+    </div>
+    <div class="root">
+        <h1 class="heading-top">Welcome to </h1>
+        <h1 class="heading-bottom"> Insert page.</h1>
+        <div class="content">
+            <form action="/insert">
+                <table>
+                    <tr>
+                        <td><label for="name">Name </label></td>
+                        <td><input type="text" id="name" name="name"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="class">class </label></td>
+                        <td><input type="number"  id="class"  name="class"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="mark">Mark</label></td>
+                        <td><input type="number"  id="mark"  name="mark"></td>
+                    </tr>
+                    <tr><td > </td><td align="center"><input type="submit" value="Submit"></td></tr>
+                </table>                
+            </form>
+        </div>
+    </div>
+</body>
+</html>

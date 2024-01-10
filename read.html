@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>*{
+        margin: 0;
+    }
+    .main {
+        background-color: white; 
+        margin: 0;
+    }
+    
+    .taskbar {
+        background-color: black; /* White */
+        color: white; /* Black */
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        padding: 10px;
+    }
+    
+    .taskbar a{
+        padding-right: 50px;
+        color: white;
+        text-decoration: none;
+    }
+    
+    a:hover{
+        color: pink;
+        text-decoration: underline;
+    }
+    .root{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+    }
+    .heading-top{
+        padding-top: 35px;
+    }
+    .root h1{
+        color: lightcoral;
+    }
+    .heading-bottom{
+        padding-bottom: 35px;
+    }
+    .content{
+        margin: 15px;
+    }
+    </style>
+    <style>
+        table {
+            width: 500px;
+            border-collapse: collapse; 
+        }
+
+        th, td {
+            border: 1px solid black; 
+            padding: 8px; 
+        }
+
+        th {
+            background-color: lightgray;
+        }
+
+        th:nth-child(1),
+        td:nth-child(1) {
+            width: 50%;
+        }
+
+        th:nth-child(2),
+        td:nth-child(2) {
+            width: 25%; 
+        }
+
+        th:nth-child(3),
+        td:nth-child(3) {
+            width: 25%; 
+        }
+    </style>
+    <title>Go CRUD</title>
+</head>
+<body>
+    <div class="main">
+        <div class="taskbar">
+            <a href="index.html">Home</a>
+            <a href="insert.html">Insert</a>
+            <a href="read.html">Read</a>
+            <a href="update.html">Update</a>
+            <a href="delete.html">Delete</a>
+        </div>
+    </div>
+    <div class="root">
+        <h1 class="heading-top">Welcome to </h1>
+        <h1 class="heading-bottom"> Read Page.</h1>
+        <div class="content">
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>class</th>
+                    <th>Mark</th>
+                </tr>
+                {{range .}}
+                <tr>
+                    <td>{{.Name}}</td>
+                    <td>{{.Class}}</td>
+                    <td>{{.Mark}}</td>
+                </tr>
+                {{end}}
+
+            </table>
+        </div>
+    </div>
+</body>
+</html>
