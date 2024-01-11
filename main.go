@@ -35,6 +35,7 @@ func main() {
 	http.HandleFunc("/delete", deleteHandler)
 	http.HandleFunc("/search", searchHandler)
 	http.HandleFunc("/update", updateHandler)
+	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
 
 	http.ListenAndServe(":8080", nil)
 }
@@ -52,7 +53,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 
 func insertShowHandler(w http.ResponseWriter, r *http.Request) {
 
-	tmp, err := template.ParseFiles("insert.html")
+	tmp, err := template.ParseFiles("src/insert.html")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -105,7 +106,7 @@ func readShowHandler(w http.ResponseWriter, r *http.Request) {
 		students = append(students, student)
 	}
 
-	tmp, err2 := template.ParseFiles("read.html")
+	tmp, err2 := template.ParseFiles("src/read.html")
 	if err2 != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -113,7 +114,7 @@ func readShowHandler(w http.ResponseWriter, r *http.Request) {
 	tmp.Execute(w, students) // Pass the data
 }
 func updateShowHandler(w http.ResponseWriter, r *http.Request) {
-	tmp, err := template.ParseFiles("update.html")
+	tmp, err := template.ParseFiles("src/update.html")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -121,7 +122,7 @@ func updateShowHandler(w http.ResponseWriter, r *http.Request) {
 	tmp.Execute(w, nil)
 }
 func deleteShowHandler(w http.ResponseWriter, r *http.Request) {
-	tmp, err := template.ParseFiles("delete.html")
+	tmp, err := template.ParseFiles("src/delete.html")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -169,7 +170,7 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	temp, err2 := template.ParseFiles("update.html")
+	temp, err2 := template.ParseFiles("src/update.html")
 	if err2 != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -187,7 +188,7 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 
 	temp.Execute(w, data)
 }
-func updateHandler(w http.ResponseWriter, r *http.Request){
+func updateHandler(w http.ResponseWriter, r *http.Request) {
 	connStr := "user=testing dbname=testing password=testing sslmode=disable" // Connect the database
 	db, err := sql.Open("postgres", connStr)
 	if err != nil {
@@ -198,9 +199,9 @@ func updateHandler(w http.ResponseWriter, r *http.Request){
 	name := r.FormValue("name")
 	class := r.FormValue("class")
 	mark := r.FormValue("mark")
-	
+
 	query := "UPDATE student SET class = $2, mark = $3 WHERE name = $1"
-	_,err1 := db.Exec(query, name, class, mark);
+	_, err1 := db.Exec(query, name, class, mark)
 	if err1 != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
